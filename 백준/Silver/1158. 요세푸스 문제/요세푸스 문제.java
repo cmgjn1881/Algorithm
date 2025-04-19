@@ -10,7 +10,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int count = 0;
+        //int count = 0;
         ArrayDeque<Integer> deque = new ArrayDeque<>();
         StringBuilder result = new StringBuilder("<");
 
@@ -22,7 +22,7 @@ public class Main {
         }
 
         while (!deque.isEmpty()) {
-            count++;
+            //count++;
 
             //조건문 방법
 //            int x = deque.removeFirst();
@@ -34,14 +34,12 @@ public class Main {
 
             //반복문 방법
             for (int i = 0; i < K - 1; i++) {
-                int x = deque.removeFirst();
-                deque.add(x);
+                deque.add(deque.removeFirst());
             }
             result.append(deque.removeFirst()).append(", ");
 
         }
-        result.delete(result.length() - 2, result.length());
-        result.append(">");
+        result.delete(result.length() - 2, result.length()).append(">");
         System.out.println(result);
     }
 }
