@@ -29,20 +29,16 @@ public class Main {
 
         // 반복문으로 수열의 뒷부분부터 결과값 구하기
         for (int i = N - 2; i >= 0; i--) {
-            // 스택의 맨위 값이 수열의 값보다 크면 해당 인덱스의 결과값을 스택의 peek값으로 배정
+
+            // 스택이 비어있지 않고 peek한 값이 배열의 값보다 클 때까지 pop
+            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                stack.pop();
+            }
+            // 스택에 남은 값이 없다면 -1, 큰 값이 있다면 result[i]를 스택의 peek값으로 배정
             if (!stack.isEmpty() && stack.peek() > arr[i]) {
                 result[i] = stack.peek();
             } else {
-                // 아니라면 스택이 비어있지 않고 peek한 값이 배열의 값보다 클 때까지 pop
-                while (!stack.isEmpty() && stack.peek() <= arr[i]) {
-                    stack.pop();
-                }
-                // 스택에 남은 값이 없다면 -1, 큰 값이 있다면 해당 인덱스의 결과값을 스택의 peek값으로 배정
-                if (!stack.isEmpty() && stack.peek() > arr[i]) {
-                    result[i] = stack.peek();
-                } else {
-                    result[i] = -1;
-                }
+                result[i] = -1;
             }
             // 해당 수열 값을 스택에 push
             stack.push(arr[i]);
