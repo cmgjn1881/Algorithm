@@ -16,20 +16,20 @@ public class Main {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         
         for (int i = 0; i < N; i++) {
-		        // StringTokenizer를 사용하여 한 줄을 입력 받음
+		    // StringTokenizer를 사용하여 한 줄을 입력 받음
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
-		            // N번째로 큰 수를 빼기 위해 숫자 앞에 '-'를 추가 후 힙에 저장
+		        // N번째로 큰 수를 빼기 위해 숫자 앞에 '-'를 추가 후 힙에 저장
                 minHeap.add(-Integer.parseInt(st.nextToken()));
             }
         }
 
-				// N - 1번째 큰 수까지 제거
+        // N - 1번째 큰 수까지 제거
         for (int i = 0; i < N - 1; i++) {
             minHeap.poll();
         }
 
-				// N번째로 큰 수 출력
+		// N번째로 큰 수 출력
         System.out.println(-minHeap.poll());
     }
 }
