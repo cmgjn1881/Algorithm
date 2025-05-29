@@ -9,33 +9,37 @@ class Solution {
             this.count = count;
         }
     }
-    int getDiffCount(String a, String b) {
-        int count = 0;
-        for (int i = 0; i < a.length(); i++) {
-            if (a.charAt(i) != b.charAt(i)) count++;
+    
+    int diffCount(String word1, String word2) {
+        int cnt = 0;
+        for (int i = 0; i < word1.length(); i++) {
+            if (word1.charAt(i) != word2.charAt(i)) {
+                cnt++;
+            }
         }
-        return count;
+        return cnt;
     }
+    
     public int solution(String begin, String target, String[] words) {
-        Set<String> visited = new HashSet<>();
+        boolean[] visited = new boolean[words.length];
+        
         Queue<Word> q = new ArrayDeque<>();
         q.offer(new Word(begin, 0));
-        visited.add(begin);
         
         while(!q.isEmpty()) {
             Word cur = q.poll();
+            
             if (cur.word.equals(target)) return cur.count;
             
-            for (String next : words) {
-                if (getDiffCount(cur.word, next) == 1) {
-                    if (!visited.contains(next)) {
-                        q.offer(new Word(next, cur.count + 1));
-                        visited.add(next);
-                    }
+            for (int i = 0; i < words.length; i++) {
+                
+                if (diffCount(cur.word, words[i]) == 1 && !visited[i]) {
+                    q.offer(new Word(words[i], cur.count + 1));
+                    visited[i] = true;
                 }
             }
         }
-    
+        
         return 0;
     }
 }
