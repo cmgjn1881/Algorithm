@@ -19,7 +19,6 @@ class Solution {
         }
         return count;
     }
-    
     public int solution(String begin, String target, String[] words) {
         boolean[] visited = new boolean[words.length];
         Queue<Word> q = new ArrayDeque<>();
@@ -28,9 +27,7 @@ class Solution {
         while(!q.isEmpty()) {
             Word cur = q.poll();
             
-            if (cur.word.equals(target)) {
-                return cur.count;
-            }
+            if (cur.word.equals(target)) return cur.count;
             
             for (int i = 0; i < words.length; i++) {
                 if (diffCount(cur.word, words[i]) == 1 && !visited[i]) {
