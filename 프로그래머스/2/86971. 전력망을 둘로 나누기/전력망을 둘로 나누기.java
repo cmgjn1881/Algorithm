@@ -6,20 +6,17 @@ class Solution {
     
     int dfs(int n, int start, Map<Integer, List<Integer>> map) {
         visited[start] = true;
-        int cnt = 1;
-        
+        int count = 1;
         for (int next : map.get(start)) {
             if (!visited[next]) {
-                cnt += dfs(n, next, map);
+                count += dfs(n, next, map);
             }
         }
-        mindiff = Math.min(mindiff, Math.abs(n - cnt * 2));
         
-        return cnt;
+        mindiff = Math.min(mindiff, Math.abs(n - count * 2));
+        return count;
     }
-    
     public int solution(int n, int[][] wires) {
-        
         Map<Integer, List<Integer>> map = new HashMap<>();
         visited = new boolean[n + 1];
         
